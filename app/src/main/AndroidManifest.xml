@@ -19,6 +19,7 @@
 
         <activity android:name=".teacher_main"/>
         <activity android:name=".class_info"/>
+        <activity android:name=".login"/>
 
     </application>
 
