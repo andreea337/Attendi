@@ -29,7 +29,7 @@ public class class_info extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // 建立RecyclerView的Adapter物件，傳入包含項目清單的List物件
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(list);
+        viewAdapter_class adapter = new viewAdapter_class(list);
 
         // 把Adapter物件傳給RecyclerView
         recyclerView.setAdapter(adapter);
