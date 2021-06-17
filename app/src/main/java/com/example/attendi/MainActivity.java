@@ -2,6 +2,7 @@ package com.example.attendi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -50,12 +51,13 @@ public class MainActivity extends AppCompatActivity {
                             for(QueryDocumentSnapshot doc : task.getResult()){
                                 String a=doc.getString("ID");
                                 String b=doc.getString("pwd");
+                                String c=doc.getString("Name");
                                 String a1=memail.getText().toString().trim();
                                 String b1=mpwd.getText().toString().trim();
                                 if(a.equalsIgnoreCase(a1) & b.equalsIgnoreCase(b1)) {
-//                                    Intent home = new Intent(MainActivity.this, home_activity.class);
-//                                    startActivity(home);
-                                    Toast.makeText(MainActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, c + " Welcome", Toast.LENGTH_LONG).show();
+                                    Intent teacher_main = new Intent(MainActivity.this, teacher_main.class);
+                                    startActivity(teacher_main);
                                     break;
                                 }else
                                     Toast.makeText(MainActivity.this, "Cannot login,incorrect Email and Password", Toast.LENGTH_SHORT).show();

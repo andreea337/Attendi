@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".teacher_main"/>
+        <activity android:name=".class_info"/>
+
     </application>
 
 </manifest>
