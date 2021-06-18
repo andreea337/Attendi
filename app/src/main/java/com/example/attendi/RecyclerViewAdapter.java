@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     // 儲存要顯示的資料
     private List<String> stringList;
+    CardView mcardview;
 
     // ViewHolder 是把項目中所有的 View 物件包起來。
     // 它在 onCreateViewHolder() 中使用。
@@ -27,6 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txt = itemView.findViewById(R.id.day);
+            mcardview = itemView.findViewById(R.id.cardview);
             itemView.setOnClickListener(this);
         }
 
@@ -65,6 +68,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, int position) {
         // 把資料設定給 ViewHolder。
         holder.txt.setText(stringList.get(position));
+        if(position%3 == 0){
+            String color = "#a297c8";
+            mcardview.setCardBackgroundColor(Integer.parseInt(color));
+        }
+        else if (position%3 == 1){
+            mcardview.setCardBackgroundColor(R.color.light_green);
+        }
+        else{
+            mcardview.setCardBackgroundColor(R.color.light_purple);
+        }
+
     }
     // RecyclerView會呼叫這個方法，我們要傳回總共有幾個項目。
     @Override

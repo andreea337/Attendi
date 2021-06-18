@@ -34,8 +34,8 @@ public class viewAdapter_class extends RecyclerView.Adapter<viewAdapter_class.Vi
 //                    .show();
             //update
             /*如何將雲端課程資料庫匯入*/
-            Intent class_info = new Intent(v.getContext(), class_info.class);
-            v.getContext().startActivity(class_info);
+            Intent attendi_mode = new Intent(v.getContext(), attendi_mode.class);
+            v.getContext().startActivity(attendi_mode);
         }
     }
     // 建構式，用來接收外部程式傳入的項目資料。

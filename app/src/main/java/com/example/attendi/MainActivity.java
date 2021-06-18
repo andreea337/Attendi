@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
         mteacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
+                Intent 變數 = new Intent(現在的activity.this, 要前往的activity.class);
+                startActivity(變數);
+                */
                 Intent login = new Intent(MainActivity.this, login.class);
                 startActivity(login);
             }
