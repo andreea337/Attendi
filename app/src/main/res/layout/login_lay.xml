@@ -5,14 +5,13 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dcdddd"
-    tools:context=".login">
+    android:background="#dcdddd">
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="350dp"
-        android:layout_height="500dp"
-        android:scaleType="centerCrop"
+        android:layout_width="400dp"
+        android:layout_height="700dp"
+        android:scaleType="centerInside"
         android:src="@drawable/loginbackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/button"
+        android:id="@+id/btnLogin"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:background="#00000000"
@@ -28,10 +27,10 @@
         android:src="@drawable/login"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.855" />
+        app:layout_constraintVertical_bias="0.634"
+        app:layout_constraintHorizontal_bias="0.496" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -80,16 +79,29 @@
         android:layout_width="175dp"
         android:layout_height="40dp"
         android:background="@drawable/rounded_editview"
-        android:textColor="@color/white"
         android:hint="密碼"
         android:paddingLeft="8dp"
         android:paddingTop="5dp"
         android:paddingRight="5dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="@+id/pid"
         app:layout_constraintStart_toStartOf="@+id/pid"
         app:layout_constraintTop_toTopOf="@+id/imageView6"
         app:layout_constraintWidth_percent=".45" />
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:background="#00000000"
+        android:scaleType="centerInside"
+        android:src="@drawable/back"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+        app:layout_constraintStart_toStartOf="@+id/btnLogin"
+        app:layout_constraintTop_toTopOf="@+id/btnLogin"
+        app:layout_constraintVertical_bias="0.396" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

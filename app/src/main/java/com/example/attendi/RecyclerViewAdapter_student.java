@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter_student extends RecyclerView.Adapter<RecyclerViewAdapter_student.ViewHolder> {
     private static final String TAG = "DocSnippets";
     // 儲存要顯示的資料
     private List<String> stringList;
@@ -51,15 +51,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             /*如何將雲端課程資料庫匯入*/
             int pos = getAdapterPosition();
             Log.d(TAG, pos+"");
-            Intent class_info = new Intent(v.getContext(), class_info.class);
+            Intent class_info = new Intent(v.getContext(), class_info_student.class);
             class_info.putExtra("pos", pos);
-            class_info.putExtra("name", stringList.get(0));
+            class_info.putExtra("name",stringList.get(0));
+            Log.d("now3",stringList.get(0)+"ddd");
             v.getContext().startActivity(class_info);
         }
     }
     // 建構式，用來接收外部程式傳入的項目資料。
 
-    public RecyclerViewAdapter(List<String> stringList) {
+    public RecyclerViewAdapter_student(List<String> stringList) {
         this.stringList = stringList;
 
     }
@@ -68,7 +69,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // 然後傳回給RecyclerView。
     @NonNull
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerViewAdapter_student.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // 建立一個 view。
         View v = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.teacher_recyclerview_item,
@@ -80,7 +81,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
     // RecyclerView會呼叫這個方法，我們必須把項目資料填入ViewHolder物件。
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewAdapter_student.ViewHolder holder, int position) {
         // 把資料設定給 ViewHolder。
         int [] drawable = {R.drawable.schedule_monday, R.drawable.schedule_tuesday, R.drawable.schedule_wednesday,
                 R.drawable.schedule_thursday, R.drawable.schedule_friday, R.drawable.schedule_saturday, R.drawable.schedule_sunday};
