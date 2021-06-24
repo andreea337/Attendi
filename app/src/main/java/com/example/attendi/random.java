@@ -140,6 +140,7 @@ public class random extends AppCompatActivity {
                                                                         }
                                                                         //notify recyclerviewdata changed
                                                                         //adapter_random_teacher adapter = new adapter_random_teacher(stringList);
+                                                                        //Log.d(TAG,"here");
                                                                         adapter.notifyDataSetChanged();
                                                                     }
 
@@ -174,6 +175,7 @@ public class random extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(random.this, "Time is set!", Toast.LENGTH_LONG).show();
+                        //Log.d(TAG,"time");
                     }
                 });
     }

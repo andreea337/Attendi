@@ -35,12 +35,14 @@ public class adapter_random_teacher extends RecyclerView.Adapter<adapter_random_
         public CardView myCard;
         public LinearLayout lo;
         public TextView txt;
+        public ImageView face;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             myCard = (CardView) itemView.findViewById(R.id.myCard);
             lo = (LinearLayout) itemView.findViewById(R.id.lo);
             txt = (TextView) itemView.findViewById(R.id.student_name);
+            face = itemView.findViewById(R.id.face);
             myCard.setCardElevation(0);
 
             itemView.setOnClickListener(this);
@@ -81,8 +83,15 @@ public class adapter_random_teacher extends RecyclerView.Adapter<adapter_random_
     @Override
     public void onBindViewHolder(@NonNull adapter_random_teacher.ViewHolder holder, int position) {
         // 把資料設定給 ViewHolder。
-        holder.txt.setText(stringList.get(position));
-        //holder.mTxt.setText(stringList.get(position).get("id").toString() + '\n' + stringList.get(position).get("value").toString());
+        holder.txt.setText(stringList.get(position) );
+        String bool = stringList.get(position).split(" ")[1];
+        if(bool.equals("true")){
+            holder.face.setImageResource(R.drawable.good_random);
+        }
+        if(bool.equals("false")){
+            holder.face.setImageResource(R.drawable.bad_random);
+        }
+
     }
     // RecyclerView會呼叫這個方法，我們要傳回總共有幾個項目。
     @Override
