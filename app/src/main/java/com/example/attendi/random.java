@@ -116,42 +116,42 @@ public class random extends AppCompatActivity {
                                                 }
                                                 adapter_random_teacher adapter = new adapter_random_teacher(stringList);
                                                 recyclerView.setAdapter(adapter);
+
+                                                Timer timer = new Timer();
+                                                timer.schedule(new TimerTask() {
+                                                    @Override
+                                                    public void run() {
+                                                        db.collection(id)
+                                                                .get()
+                                                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                                        for (QueryDocumentSnapshot doc : task.getResult()) {
+                                                                            for (int i = 0; i < 5; i++) {
+                                                                                if (pick.get(i).equals(doc.getId())) {
+                                                                                    String name = pick.get(i);
+                                                                                    Boolean chk = doc.getBoolean("check");
+                                                                                    String s = name + " " + chk;
+                                                                                    stringList.add(s);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        //notify recyclerviewdata changed
+                                                                        //adapter_random_teacher adapter = new adapter_random_teacher(stringList);
+                                                                        adapter.notifyDataSetChanged();
+                                                                    }
+
+                                                                });
+
+                                                    }
+                                                },5000,5000);
                                             }
                                         });
-
-                                Timer timer = new Timer();
-                                timer.schedule(new TimerTask() {
-                                    @Override
-                                    public void run() {
-                                    db.collection(id)
-                                            .get()
-                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                                    for (QueryDocumentSnapshot doc : task.getResult()) {
-                                                        for (int i = 0; i < 5; i++) {
-                                                            if (pick.get(i).equals(doc.getId())) {
-                                                                String name = pick.get(i);
-                                                                Boolean chk = doc.getBoolean("check");
-                                                                String s = name + " " + chk;
-                                                                stringList.add(s);
-                                                                //set selected students check to false
-                                                                doc.getReference().update("check", false);
-                                                                break;
-                                                            }
-                                                        }
-                                                    }
-                                                    //notify recyclerviewdata changed
-                                                    adapter_random_teacher adapter = new adapter_random_teacher(stringList);
-                                                    adapter.notifyDataSetChanged();
-                                                }
-
-                                            });
-
-                                    }
-                                },5000,5000);
                             }
                         });
+
+
 
             }
         });
