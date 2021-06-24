@@ -38,7 +38,9 @@ public class attendi_mode extends AppCompatActivity {
         mbtn_random.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Intent random = new Intent(attendi_mode.this, random.class);
+                random.putExtra("id", id);
+                startActivity(random);
             }
         });
     }

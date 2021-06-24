@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Attendi">
-        <activity android:name=".schedule_student"></activity>
+        <activity android:name=".random"></activity>
+        <activity android:name=".schedule_student" />
         <activity android:name=".login_student" />
         <activity android:name=".normal" />
         <activity android:name=".MainActivity">
@@ -23,8 +24,8 @@
         <activity android:name=".class_info" />
         <activity android:name=".login" />
         <activity android:name=".attendi_mode" />
-        <activity android:name=".class_info_student"/>
-        <activity android:name=".check_normal"/>
+        <activity android:name=".class_info_student" />
+        <activity android:name=".check_normal" />
     </application>
 
 </manifest>

@@ -1,24 +1,33 @@
 package com.example.attendi;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
-public class viewadapter_student extends RecyclerView.Adapter<viewadapter_student.ViewHolder> {
+public class adapter_random_teacher extends RecyclerView.Adapter<adapter_random_teacher.ViewHolder> {
 
+    private static final String TAG = "DocSnippets";
     // 儲存要顯示的資料
     private List<String> stringList;
-    private String name;
+    //private List<Map<String, Object>> stringList;
+
+
     // ViewHolder 是把項目中所有的 View 物件包起來。
     // 它在 onCreateViewHolder() 中使用。
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -31,7 +40,7 @@ public class viewadapter_student extends RecyclerView.Adapter<viewadapter_studen
             super(itemView);
             myCard = (CardView) itemView.findViewById(R.id.myCard);
             lo = (LinearLayout) itemView.findViewById(R.id.lo);
-            txt = (TextView) itemView.findViewById(R.id.course);
+            txt = (TextView) itemView.findViewById(R.id.student_name);
             myCard.setCardElevation(0);
 
             itemView.setOnClickListener(this);
@@ -39,23 +48,18 @@ public class viewadapter_student extends RecyclerView.Adapter<viewadapter_studen
 
         @Override
         public void onClick(View v) {
-//            Toast.makeText(v.getContext(), stringList.get(getAdapterPosition()), Toast.LENGTH_LONG)
-//                    .show();
-            //update
-            /*go to roll call(bundle class)*/
-            int pos = getAdapterPosition();
-            String s = stringList.get(pos).split(":")[1].trim(); // class ID
 
-            Intent class_info = new Intent(v.getContext(), check_normal.class);
-            class_info.putExtra("id", s);
-            class_info.putExtra("name", name);
-            v.getContext().startActivity(class_info);
+//            int pos = getAdapterPosition();
+//            Log.d(TAG, pos+"");
+//            Intent class_info = new Intent(v.getContext(), class_info.class);
+//            class_info.putExtra("pos", pos);
+//            class_info.putExtra("name", stringList.get(0));
+//            v.getContext().startActivity(class_info);
         }
     }
-    // 建構式，用來接收外部程式傳入的項目資料。
 
-    public viewadapter_student(List<String> stringList, String name) {
-        this.name = name;
+    // 建構式，用來接收外部程式傳入的項目資料。
+    public adapter_random_teacher(List<String> stringList) {
         this.stringList = stringList;
     }
 
@@ -63,10 +67,10 @@ public class viewadapter_student extends RecyclerView.Adapter<viewadapter_studen
     // 然後傳回給RecyclerView。
     @NonNull
     @Override
-    public viewadapter_student.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public adapter_random_teacher.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // 建立一個 view。
         View v = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.class_info_item,
+                R.layout.random_list_item,
                 parent, false);
 
         // 建立這個 view 的 ViewHolder。
@@ -75,10 +79,10 @@ public class viewadapter_student extends RecyclerView.Adapter<viewadapter_studen
     }
     // RecyclerView會呼叫這個方法，我們必須把項目資料填入ViewHolder物件。
     @Override
-    public void onBindViewHolder(@NonNull viewadapter_student.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull adapter_random_teacher.ViewHolder holder, int position) {
         // 把資料設定給 ViewHolder。
-
         holder.txt.setText(stringList.get(position));
+        //holder.mTxt.setText(stringList.get(position).get("id").toString() + '\n' + stringList.get(position).get("value").toString());
     }
     // RecyclerView會呼叫這個方法，我們要傳回總共有幾個項目。
     @Override

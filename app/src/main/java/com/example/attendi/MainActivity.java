@@ -3,6 +3,7 @@ package com.example.attendi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.renderscript.Sampler;
 import android.util.Log;
@@ -19,22 +20,29 @@ import com.google.android.gms.tasks.Task;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 public class MainActivity extends AppCompatActivity {
     ImageButton mteacher, mstudent;
     private static final String TAG = "DocSnippets";
@@ -66,24 +74,37 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(login);
             }
         });
-
-        Date date = new Date();
-        String[] str = date.toString().split("GMT");
-        String time = str[0].trim();
-        Log.d(TAG, str[0].trim());
-        Map<String, Object> docData = new HashMap<>();
-        docData.put("date", time);
-
         db.collection("java123")
-                .document(time)
-                .set(docData)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                .document("teacher")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    Date date = new Date();
+                    String d;
                     @Override
-                    public void onSuccess(Void unused) {
-                        Log.d(TAG,"SUCCESS");
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        //get data
+                        d = documentSnapshot.getString("date");
+
+                        //clean teacher timestamp: turn string to date, then to long
+                        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+                        sdFormat.setTimeZone(TimeZone.getTimeZone("Asia/Taipei"));
+                        Date teacher = null;
+                        try {
+                            teacher = sdFormat.parse(d);
+
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        long begin = teacher.getTime();
+
+                        //set student timestamp
+                        long now = date.getTime();
+                        Log.d(TAG,teacher.toString()+'\n'+now+'\n'+begin);
+                        Log.d(TAG, (now-begin)/1000+"");
+                        //compute 2 timestamp diff
+
                     }
                 });
-
 
     }
 
