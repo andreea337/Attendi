@@ -6,10 +6,9 @@
     android:orientation="vertical"
     tools:context=".normal">
 
-    <ListView
-        android:id="@+id/lvShow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </ListView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_normal"
+        android:layout_width="370dp"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

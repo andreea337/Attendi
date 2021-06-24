@@ -2,6 +2,8 @@ package com.example.attendi;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +34,9 @@ public class normal extends AppCompatActivity {
     private static final String TAG = "DocSnippets";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ListView lvShow;
-
+    List<String> str = new ArrayList<>();
+    RecyclerView recyclerView;
+    adapter_normal_teacher adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,28 @@ public class normal extends AppCompatActivity {
         },id);
 
         //display
+        recyclerView.setLayoutManager(new LinearLayoutManager(normal.this));
+        db.collection(id)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        str.clear();
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot doc : task.getResult()){
+                                Boolean chk = doc.getBoolean("check");
+                                String name = doc.getId();
+                                String s = name + " " + chk;
+                                str.add(s);
+                            }
+                        }
+                        adapter = new adapter_normal_teacher(str);
+                        recyclerView.setAdapter(adapter);
+                        Log.d(TAG,"fire"+str.get(0));
+                    }
+                });
+
+
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -67,7 +93,7 @@ public class normal extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                List<String> str = new ArrayList<>();
+                                str.clear();
                                 if(task.isSuccessful()){
                                     for(QueryDocumentSnapshot doc : task.getResult()){
                                         Boolean chk = doc.getBoolean("check");
@@ -76,7 +102,8 @@ public class normal extends AppCompatActivity {
                                         str.add(s);
                                     }
                                 }
-                                setAdapter(str);
+                                Log.d(TAG,"firesddsds"+str.get(0));
+                                adapter.notifyDataSetChanged();
                             }
                         });
             }
@@ -85,14 +112,14 @@ public class normal extends AppCompatActivity {
 
     }
 
-    private void setAdapter(List<String> str) {
-        ArrayAdapter<String> adapter=
-                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,str);
-        lvShow.setAdapter(adapter);
-    }
+//    private void setAdapter(List<String> str) {
+//        ArrayAdapter<String> adapter=
+//                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,str);
+//        lvShow.setAdapter(adapter);
+//    }
 
     public void itemSetting(){
-        lvShow=(ListView)findViewById(R.id.lvShow);
+        recyclerView = findViewById(R.id.recyclerview_normal);
     }
 
     public interface setFalse{
