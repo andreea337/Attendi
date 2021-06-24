@@ -126,6 +126,7 @@ public class random extends AppCompatActivity {
                                                                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                                                     @Override
                                                                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                                        stringList.clear();
                                                                         for (QueryDocumentSnapshot doc : task.getResult()) {
                                                                             for (int i = 0; i < 5; i++) {
                                                                                 if (pick.get(i).equals(doc.getId())) {
