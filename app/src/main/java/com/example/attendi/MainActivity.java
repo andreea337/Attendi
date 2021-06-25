@@ -74,37 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(login);
             }
         });
-        db.collection("java123")
-                .document("teacher")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    Date date = new Date();
-                    String d;
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        //get data
-                        d = documentSnapshot.getString("date");
-
-                        //clean teacher timestamp: turn string to date, then to long
-                        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-                        sdFormat.setTimeZone(TimeZone.getTimeZone("Asia/Taipei"));
-                        Date teacher = null;
-                        try {
-                            teacher = sdFormat.parse(d);
-
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        long begin = teacher.getTime();
-
-                        //set student timestamp
-                        long now = date.getTime();
-                        Log.d(TAG,teacher.toString()+'\n'+now+'\n'+begin);
-                        Log.d(TAG, (now-begin)/1000+"");
-                        //compute 2 timestamp diff
-
-                    }
-                });
 
     }
 

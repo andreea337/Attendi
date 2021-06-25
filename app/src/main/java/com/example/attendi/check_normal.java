@@ -104,6 +104,7 @@ public class check_normal extends AppCompatActivity {
                         //clean teacher timestamp: turn string to date, then to long
                         SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
                         sdFormat.setTimeZone(TimeZone.getTimeZone("Asia/Taipei"));
+
                         Date teacher = null;
                         try {
                             teacher = sdFormat.parse(d);
@@ -115,8 +116,12 @@ public class check_normal extends AppCompatActivity {
 
                         //set student timestamp
                         long now = date.getTime();
+
                         //compute 2 timestamp diff
-                        if(now - begin < 300000) {
+                        Log.d(TAG,(now-begin)/1000+"ms");
+
+                        //晚上要減掉43200 = 12hrs才是正常的
+                        if(now - begin < 300000) {// more than 5 mins
                             callback.onCallback(true);
                             Log.d(TAG, "true");
                         }
