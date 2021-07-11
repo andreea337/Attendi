@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,7 +63,9 @@ public class class_info_student extends AppCompatActivity {
                             s += key.toString() +" : "+ l.get(pos).get(key).toString() + '\n';
                             data.add(s);
                         }
-                        recyclerView.setLayoutManager(new LinearLayoutManager(class_info_student.this));
+                        //recyclerView.setLayoutManager(new LinearLayoutManager(class_info_student.this));
+                        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,
+                                StaggeredGridLayoutManager.VERTICAL));
                         viewadapter_student adapter = new viewadapter_student(data, name);
                         recyclerView.setAdapter(adapter);
                     }
