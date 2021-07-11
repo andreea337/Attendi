@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -74,6 +75,34 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(login);
             }
         });
+
+
+//        db.collection("java123")
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        for(QueryDocumentSnapshot doc : task.getResult()){
+//                            Map<String, Object> data = new HashMap<>();
+//                            data.put("check", doc.get("check"));
+//
+//                            db.collection("初日001").document(doc.getId()).set(data);
+//                            Log.d(TAG, "OK");
+//                        }
+//                    }
+//                });
+
+//        CollectionReference cities = db.collection("students").document("ann").collection("day");
+//        Map<String, Object> data = new HashMap<>();
+//        data.put("database", "DB221");
+////        data.put("日文", "初日011");
+////        data.put("國文", "大一國文5班");
+////        data.put("英文", "進修英文");
+//        data.put("java", "JAVA101");
+////        data.put("python", "PY211");
+//        cities.document("6").set(data);
+//        cities.document("7").set(data);
+//        Log.d(TAG,"OK");
 
     }
 

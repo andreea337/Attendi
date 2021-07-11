@@ -45,12 +45,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         @Override
         public void onClick(View v) {
-//            Toast.makeText(v.getContext(), stringList.get(getAdapterPosition()), Toast.LENGTH_LONG)
-//                    .show();
-            //update
-            /*如何將雲端課程資料庫匯入*/
+
             int pos = getAdapterPosition();
-            Log.d(TAG, pos+"");
             Intent class_info = new Intent(v.getContext(), class_info.class);
             class_info.putExtra("pos", pos);
             class_info.putExtra("name", stringList.get(0));

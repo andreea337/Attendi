@@ -59,19 +59,17 @@ public class adapter_normal_teacher extends RecyclerView.Adapter<adapter_normal_
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-        int background [] = {R.color.black, R.color.teal_200};
+        int background [] = {R.drawable.method3_square_red, R.drawable.method3_square_green};
         holder.lo.setBackgroundResource(background[0]);
-
-
-        holder.txt.setText(mListString.get(i));
+        holder.txt.setText(mListString.get(i).split(" ")[0]);
         //美麗的錯誤就從這開始
         String bool = mListString.get(i).split(" ")[1];
 
         if(bool.equals("true")){
-            holder.lo.setBackgroundResource(background[0]);
+            holder.lo.setBackgroundResource(background[1]);
         }
         if(bool.equals("false")){
-            holder.lo.setBackgroundResource(background[1]);
+            holder.lo.setBackgroundResource(background[0]);
         }
     }
 

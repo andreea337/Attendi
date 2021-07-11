@@ -35,14 +35,12 @@ public class adapter_random_teacher extends RecyclerView.Adapter<adapter_random_
         public CardView myCard;
         public LinearLayout lo;
         public TextView txt;
-        public ImageView face;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             myCard = (CardView) itemView.findViewById(R.id.myCard);
             lo = (LinearLayout) itemView.findViewById(R.id.lo);
             txt = (TextView) itemView.findViewById(R.id.student_name);
-            face = itemView.findViewById(R.id.face);
             myCard.setCardElevation(0);
 
             itemView.setOnClickListener(this);
@@ -86,10 +84,10 @@ public class adapter_random_teacher extends RecyclerView.Adapter<adapter_random_
         holder.txt.setText(stringList.get(position) );
         String bool = stringList.get(position).split(" ")[1];
         if(bool.equals("true")){
-            holder.face.setImageResource(R.drawable.good_random);
+            holder.lo.setBackgroundResource(R.drawable.good_random);
         }
         if(bool.equals("false")){
-            holder.face.setImageResource(R.drawable.bad_random);
+            holder.lo.setBackgroundResource(R.drawable.bad_random);
         }
 
     }

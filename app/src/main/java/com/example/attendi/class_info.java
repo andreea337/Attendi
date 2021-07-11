@@ -3,6 +3,7 @@ package com.example.attendi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class class_info extends AppCompatActivity {
     RecyclerView recyclerView;
     private static final String TAG = "DocSnippets";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +36,13 @@ public class class_info extends AppCompatActivity {
         Intent intent = getIntent();
         int pos = intent.getIntExtra("pos", 0);
         String name = intent.getStringExtra("name");
-        Log.d(TAG, name);
-        // 把項目清單準備好，放在一個List物件裏頭
-        //update---------------------------
 
+        int day[] = {R.drawable.class_info_image_monday2, R.drawable.class_info_image_tuesday2, R.drawable.class_info_image_wednesday2,
+                R.drawable.class_info_image_thursday2, R.drawable.class_info_image_friday2, R.drawable.class_info_image_saturday2,
+                R.drawable.class_info_image_sunday2};
+        img.setImageResource(day[pos]);
+
+        // 把項目清單準備好，放在一個List物件裏頭
         List<Map<String , Object>> l = new ArrayList<>();
         db.collection("professors")
                 .document(name)
@@ -52,44 +57,28 @@ public class class_info extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 m  = document.getData();
                                 l.add(m);
-//                                Log.d(TAG, document.getId() + " = " +m+'\n'+ l.get(i));
-//                                Log.d(TAG, l.size()+"");
                                 i++;
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
-//                        Log.d(TAG, l.size()+"");
 
                         List<String> data = new ArrayList<>();
                         for(Object key:l.get(pos).keySet()){
                             String s ="";
                             s += key.toString() +":"+ l.get(pos).get(key).toString() + '\n';
                             data.add(s);
-                            //Log.d(TAG,s+"-------------"+data.size());
                         }
                         recyclerView.setLayoutManager(new LinearLayoutManager(class_info.this));
                         viewAdapter_class adapter = new viewAdapter_class(data);
                         recyclerView.setAdapter(adapter);
                     }
                 });
-        //匯入雲端資料庫的課程資料
-//        List<String> list = new ArrayList<>();
-//        list.add("AM 9:00\nJAVA and APP Develope");
-//        list.add("AM 13:00\nDatabase Develope");
-        // 設定RecyclerView使用的LayoutManager
-        // LayoutManager決定項目的排列方式。
-//
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//
-//        // 建立RecyclerView的Adapter物件，傳入包含項目清單的List物件
-//        viewAdapter_class adapter = new viewAdapter_class(list);
-//
-//        // 把Adapter物件傳給RecyclerView
-//        recyclerView.setAdapter(adapter);
+
     }
 
     private void itemSetting(){
         recyclerView = findViewById(R.id.recyclerView);
+        img = findViewById(R.id.class_info_image);
     }
 }

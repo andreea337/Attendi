@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,8 +32,8 @@ import java.util.Map;
 import java.util.TimeZone;
 
 public class check_normal extends AppCompatActivity {
-    TextView txt, outcome;
-    Button btn;
+    TextView txt;
+    ImageButton btn;
     private static final String TAG = "DocSnippets";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -41,6 +42,7 @@ public class check_normal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.check_normal);
         itemSetting();
+
         Intent intent = getIntent();
         String name = intent.getStringExtra("name").trim();
         String id = intent.getStringExtra("id").trim();
@@ -64,19 +66,18 @@ public class check_normal extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            outcome.setText("Success");
+                                            MyDialog.showCompleteDialog(check_normal.this);
                                             Log.d(TAG, "DocumentSnapshot successfully updated!");
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            outcome.setText("Failure");
                                             Log.w(TAG, "Error updating document", e);
                                         }
                                     });
                         } else {
-                            outcome.setText("Timeout");
+                            MyDialog.showFailedDialog(check_normal.this);
                         }
                     }
                 },id);
@@ -102,7 +103,7 @@ public class check_normal extends AppCompatActivity {
                         d = documentSnapshot.getString("date");
 
                         //clean teacher timestamp: turn string to date, then to long
-                        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+                        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                         sdFormat.setTimeZone(TimeZone.getTimeZone("Asia/Taipei"));
 
                         Date teacher = null;
@@ -137,6 +138,5 @@ public class check_normal extends AppCompatActivity {
     private void itemSetting() {
         txt = findViewById(R.id.txt_chk_normal);
         btn = findViewById(R.id.chkbtn);
-        outcome = findViewById(R.id.txt_chk_normal_out);
     }
 }

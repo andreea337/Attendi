@@ -83,8 +83,8 @@ public class RecyclerViewAdapter_student extends RecyclerView.Adapter<RecyclerVi
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter_student.ViewHolder holder, int position) {
         // 把資料設定給 ViewHolder。
-        int [] drawable = {R.drawable.schedule_monday, R.drawable.schedule_tuesday, R.drawable.schedule_wednesday,
-                R.drawable.schedule_thursday, R.drawable.schedule_friday, R.drawable.schedule_saturday, R.drawable.schedule_sunday};
+        int [] drawable = {R.drawable.schedule_monday2, R.drawable.schedule_tuesday2, R.drawable.schedule_wednesday2,
+                R.drawable.schedule_thursday2, R.drawable.schedule_friday2, R.drawable.schedule_saturday2, R.drawable.schedule_sunday2};
         holder.lo.setBackgroundResource(drawable[position%7]);
         //holder.mTxt.setText(stringList.get(position).get("id").toString() + '\n' + stringList.get(position).get("value").toString());
     }

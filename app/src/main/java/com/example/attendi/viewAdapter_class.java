@@ -72,7 +72,6 @@ public class viewAdapter_class extends RecyclerView.Adapter<viewAdapter_class.Vi
     @Override
     public void onBindViewHolder(@NonNull viewAdapter_class.ViewHolder holder, int position) {
         // 把資料設定給 ViewHolder。
-
         holder.txt.setText(stringList.get(position));
     }
     // RecyclerView會呼叫這個方法，我們要傳回總共有幾個項目。

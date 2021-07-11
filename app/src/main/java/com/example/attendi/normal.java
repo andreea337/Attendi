@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,10 +34,10 @@ import java.util.TimerTask;
 public class normal extends AppCompatActivity {
     private static final String TAG = "DocSnippets";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ListView lvShow;
     List<String> str = new ArrayList<>();
     RecyclerView recyclerView;
     adapter_normal_teacher adapter;
+    TextView course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,9 @@ public class normal extends AppCompatActivity {
         itemSetting();
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
+
+        //set course id
+        course.setText(id);
 
         //set all students to false
         //setToFalse(id);
@@ -61,8 +65,8 @@ public class normal extends AppCompatActivity {
             }
         },id);
 
+
         //display
-        recyclerView.setLayoutManager(new LinearLayoutManager(normal.this));
         db.collection(id)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -79,7 +83,6 @@ public class normal extends AppCompatActivity {
                         }
                         adapter = new adapter_normal_teacher(str);
                         recyclerView.setAdapter(adapter);
-                        Log.d(TAG,"fire"+str.get(0));
                     }
                 });
 
@@ -102,7 +105,6 @@ public class normal extends AppCompatActivity {
                                         str.add(s);
                                     }
                                 }
-                                Log.d(TAG,"firesddsds"+str.get(0));
                                 adapter.notifyDataSetChanged();
                             }
                         });
@@ -112,14 +114,11 @@ public class normal extends AppCompatActivity {
 
     }
 
-//    private void setAdapter(List<String> str) {
-//        ArrayAdapter<String> adapter=
-//                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,str);
-//        lvShow.setAdapter(adapter);
-//    }
-
     public void itemSetting(){
-        recyclerView = findViewById(R.id.recyclerview_normal);
+        recyclerView = findViewById(R.id.RCview);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4,
+                StaggeredGridLayoutManager.VERTICAL));
+        course = findViewById(R.id.course);
     }
 
     public interface setFalse{
@@ -147,7 +146,7 @@ public class normal extends AppCompatActivity {
 
     public void setTimeToFirestore(String id){
 
-        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         sdFormat.setTimeZone(TimeZone.getTimeZone("Asia/Taipei"));
         Date date = new Date();
         String time = sdFormat.format(date).trim();

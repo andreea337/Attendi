@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class attendi_mode extends AppCompatActivity {
 
-    Button mbtn_normal, mbtn_ball, mbtn_random;
+    ImageButton mbtn_normal, mbtn_ball, mbtn_random;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

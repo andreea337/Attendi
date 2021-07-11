@@ -147,7 +147,7 @@ public class random extends AppCompatActivity {
                                                                 });
 
                                                     }
-                                                },5000,5000);
+                                                },0,5000);
                                             }
                                         });
                             }
@@ -160,7 +160,7 @@ public class random extends AppCompatActivity {
     }
     public void setTimeToFirestore(String id){
 
-        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         sdFormat.setTimeZone(TimeZone.getTimeZone("Asia/Taipei"));
         Date date = new Date();
         String time = sdFormat.format(date).trim();

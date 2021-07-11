@@ -7,25 +7,38 @@
     android:background="#dcdddd"
     tools:context=".random">
 
-    <ImageButton
-        android:id="@+id/btn_random_active"
-        android:layout_width="119dp"
-        android:layout_height="113dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/imgbtn_random"
-        android:scaleType="centerInside"
-        android:background="#dcdddd"
+    <ImageView
+        android:id="@+id/random_image"
+        android:layout_width="360dp"
+        android:layout_height="210dp"
+        app:layout_constraintVertical_bias=".06"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/random_image" />
+
+    <ImageButton
+        android:id="@+id/btn_random_active"
+        android:layout_width="100dp"
+        android:layout_height="97dp"
+        android:background="#00000000"
+        android:scaleType="centerInside"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/random_image"
+        app:layout_constraintEnd_toEndOf="@+id/random_image"
+        app:layout_constraintStart_toStartOf="@+id/random_image"
+        app:layout_constraintTop_toTopOf="@+id/random_image"
+        app:srcCompat="@drawable/random_btn" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="380dp"
         android:layout_height="450dp"
+        android:paddingLeft="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btn_random_active"
-        app:layout_constraintStart_toStartOf="@+id/btn_random_active"
-        app:layout_constraintTop_toBottomOf="@+id/btn_random_active"/>
+        app:layout_constraintEnd_toEndOf="@+id/random_image"
+        app:layout_constraintStart_toStartOf="@+id/random_image"
+        app:layout_constraintTop_toBottomOf="@+id/random_image"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

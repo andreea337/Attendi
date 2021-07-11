@@ -1,14 +1,48 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#dcdddd"
     tools:context=".normal">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_normal"
-        android:layout_width="370dp"
-        android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/method3_image"
+        android:layout_width="390dp"
+        android:layout_height="270dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".04"
+        app:srcCompat="@drawable/method3_image" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/course"
+        android:layout_width="151dp"
+        android:layout_height="65dp"
+        android:background="@drawable/method3_class"
+        android:layout_marginRight="135dp"
+        android:layout_marginBottom="30dp"
+        android:text="預設"
+        android:textSize="26sp"
+        android:gravity="center_horizontal"
+        android:paddingTop="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/method3_image"
+        app:layout_constraintEnd_toEndOf="@+id/method3_image"
+        app:layout_constraintStart_toStartOf="@+id/method3_image"
+        app:layout_constraintTop_toTopOf="@+id/method3_image" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RCview"
+        android:layout_width="380dp"
+        android:layout_height="450dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/method3_image"
+        app:layout_constraintStart_toStartOf="@+id/method3_image"
+        app:layout_constraintTop_toBottomOf="@+id/method3_image" />
+</androidx.constraintlayout.widget.ConstraintLayout>
